@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" x-frame-options="sameorigin">
+<head>
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="Expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+<meta http-equiv="x-frame-options" content="sameorigin">
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="description" content="只要有機會被重複利用且獨立的元件, 使用 Web Components 來開發真的是再適合不過了. 今天要跟大家介紹的是 <like-lt> 這個 module, 它有著跟 facebook like 一樣的使命與功能, 這個需求主要源自於服務的 - 追蹤商品, user 可以透過 <like-it> 的點擊來追蹤自己所感興趣的商品, 由於筆者很喜歡 facebook like 的功能, 因此剛好藉著服務改版的機會, 來實作類似的功能出來. 使用方法很簡單, 只要在頁面中任一位置置入 <likt-it> 這個 HTML tag, 便可以快速的幫該頁商品進行 like 的功能附加, 不需要再寫額外的 JavaScript 或者是其他 UI 的呈現. 如果該頁是列表的形式 (可能有 N 件商品), 那麼更能顯示它的威力喔! 接下來就讓我來為大家介紹 <like-it> 的使用時機以及更進階的設定.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@mei">
+<meta name="twitter:creator" content="@mei">
+<meta name="twitter:title" content="likeIT - web components based module">
+<meta name="twitter:description" content="只要有機會被重複利用且獨立的元件, 使用 Web Components 來開發真的是再適合不過了. 今天要跟大家介紹的是 <like-lt> 這個 module, 它有著跟 facebook like 一樣的使命與功能, 這個需求主要源自於服務的 - 追蹤商品, user 可以透過 <like-it> 的點擊來追蹤自己所感興趣的商品, 由於筆者很喜歡 facebook like 的功能, 因此剛好藉著服務改版的機會, 來實作類似的功能出來. 使用方法很簡單, 只要在頁面中任一位置置入 <likt-it> 這個 HTML tag, 便可以快速的幫該頁商品進行 like 的功能附加, 不需要再寫額外的 JavaScript 或者是其他 UI 的呈現. 如果該頁是列表的形式 (可能有 N 件商品), 那麼更能顯示它的威力喔! 接下來就讓我來為大家介紹 <like-it> 的使用時機以及更進階的設定.">
+<meta name="twitter:image:src" content="http://mei.homin.com.tw/img/preview/likeIT.png">
+<meta property="og:title" content="likeIT - web components based module">
+<meta property="og:site_name" content="mei">
+<meta property="og:description" content="只要有機會被重複利用且獨立的元件, 使用 Web Components 來開發真的是再適合不過了. 今天要跟大家介紹的是 <like-lt> 這個 module, 它有著跟 facebook like 一樣的使命與功能, 這個需求主要源自於服務的 - 追蹤商品, user 可以透過 <like-it> 的點擊來追蹤自己所感興趣的商品, 由於筆者很喜歡 facebook like 的功能, 因此剛好藉著服務改版的機會, 來實作類似的功能出來. 使用方法很簡單, 只要在頁面中任一位置置入 <likt-it> 這個 HTML tag, 便可以快速的幫該頁商品進行 like 的功能附加, 不需要再寫額外的 JavaScript 或者是其他 UI 的呈現. 如果該頁是列表的形式 (可能有 N 件商品), 那麼更能顯示它的威力喔! 接下來就讓我來為大家介紹 <like-it> 的使用時機以及更進階的設定.">
+<meta property="og:image" content="http://mei.homin.com.tw/img/preview/likeIT.png">
+<title>likeIT - web components based module</title>
+<link rel="dns-prefetch" href="//mei.homin.com.tw">
+<link rel="canonical" href="http://mei.homin.com.tw/likeITPrototype.html">
+<link rel="stylesheet" href="css/cssbase.css">
+<link rel="stylesheet" href="css/adornFormElements.css">
+<link rel="stylesheet" href="css/like-heart.css">
+<script src="js/pageRender.js" data-source="js/gaExt.js&js/pack-like-it.js&js/likeITInit.js"></script>
+</head>
+
+<body>
+<header id="hd" role="banner">
+	<h1>likeIT - web components based module</h1>
+</header>
+
+<main id="bd" role="main">
+	<section>
+		<like-it hidden data-aspect="right" data-conf='{&quot;io&quot;:{&quot;status&quot;:{&quot;uri&quot;:&quot;likeITFunc.php&quot;,&quot;params&quot;:{&quot;action&quot;:&quot;status&quot;,&quot;itemId&quot;:&quot;100149185305&quot;,&quot;property&quot;:&quot;meistudio&quot;,&quot;likes&quot;:&quot;999&quot;}},&quot;update&quot;:{&quot;uri&quot;:&quot;likeITFunc.php&quot;,&quot;params&quot;:{&quot;action&quot;:&quot;update&quot;,&quot;itemId&quot;:&quot;100149185305&quot;,&quot;property&quot;:&quot;meistudio&quot;}}},&quot;sound&quot;:&quot;sound\/likeit.mp3&quot;,&quot;withCredentials&quot;:true}'>
+			<h3>like-it</h3>
+			<em>999</em>
+		</like-it>
+	</section>
+</main>
+
+<footer id="ft">
+	<small role="contentinfo">Powered by mei's studio.</small>
+	<var id="gaConf" data-conf='{&quot;trackingID&quot;:&quot;UA-74300583-1&quot;,&quot;cookieDomain&quot;:&quot;none&quot;,&quot;sampleRate&quot;:&quot;100&quot;,&quot;markId&quot;:&quot;gaExtMark&quot;,&quot;signEsc&quot;:&quot;ga-esc&quot;,&quot;customDefinitions&quot;:{&quot;document_group&quot;:&quot;likeIT prototype&quot;},&quot;cdMap&quot;:{&quot;document_group&quot;:&quot;contentGroup1&quot;},&quot;trackedMods&quot;:{&quot;like-it&quot;:&quot;likeIt&quot;}}' hidden>ga conf</var>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "CreativeWork",
+  "name": "likeIT - web components based module",
+  "url": "http://mei.homin.com.tw/likeITPrototype.html",
+  "description": "只要有機會被重複利用且獨立的元件, 使用 Web Components 來開發真的是再適合不過了. 今天要跟大家介紹的是 <like-lt> 這個 module, 它有著跟 facebook like 一樣的使命與功能, 這個需求主要源自於服務的 - 追蹤商品, user 可以透過 <like-it> 的點擊來追蹤自己所感興趣的商品, 由於筆者很喜歡 facebook like 的功能, 因此剛好藉著服務改版的機會, 來實作類似的功能出來. 使用方法很簡單, 只要在頁面中任一位置置入 <likt-it> 這個 HTML tag, 便可以快速的幫該頁商品進行 like 的功能附加, 不需要再寫額外的 JavaScript 或者是其他 UI 的呈現. 如果該頁是列表的形式 (可能有 N 件商品), 那麼更能顯示它的威力喔! 接下來就讓我來為大家介紹 <like-it> 的使用時機以及更進階的設定.",
+  "image": "http://mei.homin.com.tw/img/preview/likeIT.png",
+  "author": {
+	  "@type": "Person",
+	  "name": "Paul Li",
+	  "jobTitle": "Front End engineer",
+	  "affiliation": "mei's studio",
+	  "additionalName": "mei",
+	  "url": "https://www.facebook.com/mei.studio.li",
+	  "image": "https://graph.facebook.com/mei.studio.li/picture",
+	  "brand": "mei's studio",
+	  "familyName": "Li",
+	  "gender": "M",
+	  "givenName": "Paul",
+	  "owns": "mei's studio",
+	  "worksFor": "Yahoo",
+	  "description": "People who loves all front end skills"
+  },
+  "dateCreated": "2016-05-06",
+  "datePublished": "2016-05-06",
+  "genre": "web components",
+  "keywords": "likeIT,webcomponents"
+}
+</script>
+</body>
+</html>
