@@ -106,12 +106,12 @@ likeIT.prototype = {
 
 			//animation
 			if (typeof anis != 'undefined') {
-				e.transition = anis.transition + ':' + anis.transform +' 300ms cubic-bezier(.17,.67,.5,1.7),opacity 300ms cubic-bezier(.17,.67,.5,1.7);';
+				e.transition = anis.transition + ':' + anis.transform +' 300ms cubic-bezier(.17,.67,.5,1.7),opacity 300ms cubic-bezier(.17,.67,.5,1.7);will-change:'+anis.transform+',opacity;';
 				e.aniBeforeNormal = e.transition + anis.transform+':scale(1);opacity:1;';
 				e.aniBeforeAct = anis.transform+':scale(.001);opacity:0;';
 				e.aniAfterNormal = e.transition + anis.transform+':scale(.001);opacity:0;';
 				e.aniAfterAct = anis.transform+':scale(1);opacity:1;';
-				e.aniWrap = anis.transition + ':opacity 300ms ease-in,color 300ms ease-in;';
+				e.aniWrap = anis.transition + ':opacity 300ms ease-in,color 300ms ease-in;will-change:opacity,color;';
 			} else {
 				e.aniBeforeNormal = 'visibility:visible;';
 				e.aniBeforeAct = 'visibility:hide;';
@@ -540,7 +540,7 @@ likeIT.prototype = {
 		}//end switch
 	},
 	qd: function(o) {
-		var ResultObj, info;
+		var ResultObj, info, soundPlay;
 		ResultObj = {info:'fail'};
 		if (o.status == 200) {
 			try {ResultObj=JSON.parse(o.responseText.replace(/\)\]\}',\n/, ''));} catch(e) {}
@@ -548,14 +548,16 @@ likeIT.prototype = {
 		this.Ens.host.removeAttribute('disabled');
 		if (ResultObj.info == 'success') {
 			info = {};
+			soundPlay = false;
 			if (o.args.type == 'status') {
+				soundPlay = true;
 				this.Data.logined = ResultObj.data.logined;
 				info.logined = this.Data.logined;
 				this.Ens.host.classList.add('ready');
 			}//end if
 			this.Data.liked = ResultObj.data.liked;
 			if (ResultObj.data.likes && !isNaN(ResultObj.data.likes)) this.Data.likes = parseInt(ResultObj.data.likes, 10);
-			this.refresh();
+			this.refresh(soundPlay);
 
 			info.liked = this.Data.liked;
 			info.likes = this.Data.likes;
@@ -568,8 +570,10 @@ likeIT.prototype = {
 	soundPlay: function() {
 		if (!this.Ens.sound) return;
 		//sound
-		this.Ens.sound.currentTime = 0;
-		this.Ens.sound.play();
+		try {
+			this.Ens.sound.currentTime = 0;
+			this.Ens.sound.play();
+		} catch(e) {}
 	},
 	rollBack: function(info) {
 		var msg;
@@ -606,17 +610,13 @@ likeIT.prototype = {
 		}//end if
 		return likes;
 	},
-	refresh: function() {
+	refresh: function(soundPlay) {
+		var soundPlay = (typeof soundPlay == 'boolean') ? soundPlay : true;
 		this.Ens.trigger.textContent = this.format();
 		this.Ens.host.classList[this.Data.liked ? 'add' : 'remove']('act');
 		if (this.Data.liked) {
 			this.Ens.host.classList.add('act');
-			if (this.Ens.sound) {
-				try {
-					this.Ens.sound.currentTime = 0;
-					this.Ens.sound.play();
-				} catch (err) {}
-			}//end if
+			if (soundPlay) this.soundPlay();
 		} else this.Ens.host.classList.remove('act');
 	},
 	terminate: function() {
